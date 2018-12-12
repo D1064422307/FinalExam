@@ -12,6 +12,35 @@
 --
 --	Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
+centerX = LEFT_REF
+centerY = display.contentCenterY - 1 * display.screenOriginY
+centerX = display.contentCenterX - 5 * display.screenOriginX
+
+actualW = display.actualContentWidth
+actualH = display.actualContentHeight
+
+local physics = require( "physics" )
+physics.start()
+
+local snow = {}
+local sCounter = 1
+local sTimer
+
+local function createSnow()
+	local randomSize = math.random( 1, 5 )
+	local randomX = math.random( centerX - actualW/0.5, centerY + actualW/10 )
+	local randomRightLeft = math.random( 50, 150)
+	local randomDown = math.random( 101, 150 )
+	snow[sCounter] = display.newCircle( randomX, centerY - actualH/2 - 100, randomSize )
+	snow[sCounter].value = sCounter
+	physics.addBody( snow[sCounter], "dynamic" )
+	snow[sCounter].gravityScale = 0 
+	snow[sCounter]:setLinearVelocity( randomDown, randomRightLeft )
+	snow[sCounter].alpha = 1
+	sCounter = sCounter + 1
+end
+
+sTimer = timer.performWithDelay( 50, createSnow, -1 )
 
 local centerX = display.contentCenterX
 local centerY = display.contentCenterY
