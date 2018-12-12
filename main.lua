@@ -76,21 +76,21 @@ tree[8].x = 420; tree[8].y = baseline
 tree[8].dx = 0.8
 
 -- an image sheet with a cat
-local sheet1 = graphics.newImageSheet( "runningcat.png", { width=512, height=256, numFrames=6 } )
+local sheet1 = graphics.newImageSheet( "runningcat.png", { width=128, height=128, numFrames=12 } )
 
--- play 8 frames every 1000 ms
-local instance1 = display.newSprite( sheet1, { name="cat", start=1, count=6, time=500 } )
-instance1.x = 3 * display.contentWidth / 5 + 30
-instance1.y = baseline - 50
-instance1.xScale = .3
-instance1.yScale = .3
+-- play 15 frames every 500 ms
+local instance1 = display.newSprite( sheet1, { name="cat", start=1, count=12, time=800 } )
+instance1.x = display.contentWidth / 10+300
+instance1.y = baseline - 45
+instance1.xScale = 1
+instance1.yScale = 1
 instance1:play()
 
 -- A sprite sheet with a green dude
 local sheet2 = graphics.newImageSheet( "greenman.png", { width=128, height=128, numFrames=12 } )
 
 -- play 15 frames every 500 ms
-local instance2 = display.newSprite( sheet2, { name="man", start=1, count=12, time=1500 } )
+local instance2 = display.newSprite( sheet2, { name="man", start=1, count=12, time=2000 } )
 instance2.x = display.contentWidth / 5 + 40
 instance2.y = baseline - 85
 instance2.xScale = 2
