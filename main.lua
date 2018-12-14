@@ -12,9 +12,9 @@
 --
 --	Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
-centerX = LEFT_REF
-centerY = display.contentCenterY - 1 * display.screenOriginY
-centerX = display.contentCenterX - 5 * display.screenOriginX
+centerX = RIGHT_REF
+centerY = display.contentCenterY +1 
+centerX = display.contentCenterX +5 
 
 actualW = display.actualContentWidth
 actualH = display.actualContentHeight
@@ -174,3 +174,4 @@ end
 
 -- Start everything moving
 Runtime:addEventListener( "enterFrame", move );
+
