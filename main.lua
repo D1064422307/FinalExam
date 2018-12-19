@@ -57,9 +57,9 @@ local CENTER_REF = 0.5
 display.setStatusBar( display.HiddenStatusBar )
 
 -- The sky as background
-local sky = display.newImage( "background.jpg", 90,130 )
+local sky = display.newImage( "background2.png", 240,155)
 
-local baseline = 280
+local baseline = 295
 
 -- a bunch of foliage
 local tree = {}
@@ -105,25 +105,25 @@ tree[8].x = 420; tree[8].y = baseline
 tree[8].dx = 0.8
 
 -- an image sheet with a cat
-local sheet1 = graphics.newImageSheet( "satan.png", { width=500, height=500, numFrames=19 } )
+local sheet1 = graphics.newImageSheet( "satan.png", { width=500, height=500, numFrames=10 } )
 
 -- play 15 frames every 500 ms
-local instance1 = display.newSprite( sheet1, { name="cat", start=1, count=18, time=650 } )
-instance1.x = display.contentWidth / 10+300
-instance1.y = baseline -100
+local instance1 = display.newSprite( sheet1, { name="cat", start=1, count=10, time=800} )
+instance1.x = display.contentWidth / 5+50
+instance1.y = baseline -80
 instance1.xScale = 0.5
 instance1.yScale = 0.5
 instance1:play()
 
 -- A sprite sheet with a green dude
-local sheet2 = graphics.newImageSheet( "greenman.png", { width=128, height=128, numFrames=12 } )
+local sheet2 = graphics.newImageSheet( "runningcat.png", { width=128, height=128, numFrames=12 } )
 
 -- play 15 frames every 500 ms
 local instance2 = display.newSprite( sheet2, { name="man", start=1, count=12, time=2000 } )
-instance2.x = display.contentWidth / 5 + 40
-instance2.y = baseline - 85
-instance2.xScale = 2
-instance2.yScale = 2
+instance2.x = display.contentWidth / 5 + 220
+instance2.y = baseline - 50
+instance2.xScale = 1
+instance2.yScale = 1
 instance2:play()
 
 
@@ -140,7 +140,7 @@ grass2.x = 480
 grass2.y = baseline - 20
 
 -- solid ground, doesn't need to move
-local ground = display.newRect( 0, baseline, 480, 90 )
+local ground = display.newRect( 0, baseline, 480, 70 )
 ground:setFillColor( 0x31/255, 0x5a/255, 0x18/255 )
 ground.anchorX = LEFT_REF
 ground.anchorY = TOP_REF
