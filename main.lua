@@ -12,35 +12,27 @@
 --
 --	Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
-centerX = RIGHT_REF
-centerY = display.contentCenterY +1 
-centerX = display.contentCenterX +5 
-
-actualW = display.actualContentWidth
-actualH = display.actualContentHeight
-
-local physics = require( "physics" )
-physics.start()
-
-local snow = {}
-local sCounter = 1
-local sTimer
-
-local function createSnow()
-	local randomSize = math.random( 1, 5 )
-	local randomX = math.random( centerX - actualW/0.5, centerY + actualW/10 )
-	local randomRightLeft = math.random( 50, 150)
-	local randomDown = math.random( 101, 150 )
-	snow[sCounter] = display.newCircle( randomX, centerY - actualH/2 - 100, randomSize )
-	snow[sCounter].value = sCounter
-	physics.addBody( snow[sCounter], "dynamic" )
-	snow[sCounter].gravityScale = 0 
-	snow[sCounter]:setLinearVelocity( randomDown, randomRightLeft )
-	snow[sCounter].alpha = 1
-	sCounter = sCounter + 1
+local function removeFlake(target)
+        target:removeSelf()
+        target = nil
 end
 
-sTimer = timer.performWithDelay( 50, createSnow, -1 )
+local function spawnSnowFlake()
+        local flake = display.newCircle(0,0,3.5)
+        flake.x = math.random(1,500)
+        flake.y = 20
+        local wind = math.random(100) -400
+        transition.to(flake,{time=math.random(2000) + 800, y = display.contentHeight + 10, x = flake.x + wind, onComplete=removeFlake})
+end
+
+local function makeSnow(event)
+      if math.random(6) == 1 then -- adjust speed here by making the random number higher or lower
+            spawnSnowFlake()
+      end
+      return true
+end
+
+Runtime:addEventListener("enterFrame",makeSnow)
 
 local centerX = display.contentCenterX
 local centerY = display.contentCenterY
@@ -57,7 +49,7 @@ local CENTER_REF = 0.5
 display.setStatusBar( display.HiddenStatusBar )
 
 -- The sky as background
-local sky = display.newImage( "background2.png", 240,155)
+local sky = display.newImage( "background2.png", 240,140)
 
 local baseline = 295
 
@@ -108,9 +100,9 @@ tree[8].dx = 0.8
 local sheet1 = graphics.newImageSheet( "satan.png", { width=500, height=500, numFrames=10 } )
 
 -- play 15 frames every 500 ms
-local instance1 = display.newSprite( sheet1, { name="cat", start=1, count=10, time=800} )
+local instance1 = display.newSprite( sheet1, { name="satan", start=1, count=10, time=800} )
 instance1.x = display.contentWidth / 5+50
-instance1.y = baseline -80
+instance1.y = baseline -115
 instance1.xScale = 0.5
 instance1.yScale = 0.5
 instance1:play()
@@ -121,7 +113,7 @@ local sheet2 = graphics.newImageSheet( "runningcat.png", { width=128, height=128
 -- play 15 frames every 500 ms
 local instance2 = display.newSprite( sheet2, { name="man", start=1, count=12, time=2000 } )
 instance2.x = display.contentWidth / 5 + 220
-instance2.y = baseline - 50
+instance2.y = baseline - 75
 instance2.xScale = 1
 instance2.yScale = 1
 instance2:play()
@@ -130,14 +122,14 @@ instance2:play()
 -- Grass
 -- This is doubled so we can slide it
 -- When one of the grass images slides offscreen, we move it all the way to the right of the next one.
-local grass = display.newImage( "grass.png" )
+local grass = display.newImage( "grass2.png" )
 grass.anchorX = LEFT_REF
 grass.x = 0
-grass.y = baseline - 20
-local grass2 = display.newImage( "grass.png" )
+grass.y = baseline - 18
+local grass2 = display.newImage( "grass2.png" )
 grass2.anchorX = LEFT_REF
 grass2.x = 480
-grass2.y = baseline - 20
+grass2.y = baseline - 18
 
 -- solid ground, doesn't need to move
 local ground = display.newRect( 0, baseline, 480, 70 )
