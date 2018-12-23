@@ -100,16 +100,21 @@ item[9].xScale = 0.5; item[9].yScale = 0.5
 item[9].anchorY = BOTTOM_REF
 item[9].x = 400; item[9].y = baseline-29
 item[9].dx = 0.4
+item[10] = display.newImage( "Title.png" )
+item[10].xScale = 0.5; item[10].yScale = 0.5
+item[10].anchorY = BOTTOM_REF
+item[10].x = 960; item[10].y = baseline-180
+item[10].dx = 0.6
 
 
 
 
 
 -- an image sheet with a cat
-local sheet1 = graphics.newImageSheet( "satan.png", { width=500, height=500, numFrames=10 } )
+local sheet1 = graphics.newImageSheet( "Santa.png", { width=500, height=500, numFrames=10 } )
 
 -- play 15 frames every 500 ms
-local instance1 = display.newSprite( sheet1, { name="satan", start=1, count=9, time=800} )
+local instance1 = display.newSprite( sheet1, { name="Santa", start=1, count=9, time=800} )
 instance1.x = display.contentWidth / 5+50
 instance1.y = baseline -155
 instance1.xScale = 0.5
@@ -126,7 +131,6 @@ instance2.y = baseline - 152
 instance2.xScale = 0.5
 instance2.yScale = 0.5
 instance2:play()
-
 
 -- Grass
 -- This is doubled so we can slide it
