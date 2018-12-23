@@ -181,3 +181,18 @@ end
 
 -- Start everything moving
 Runtime:addEventListener( "enterFrame", move );
+
+local function narrationFinished( event )
+    print( "Narration Finished on channel", event.channel )
+    if ( event.completed ) then
+        print( "Narration completed playback naturally" )
+    else
+        print( "Narration was stopped before completion" )
+    end
+end
+ 
+-- Load two audio streams and one sound
+local backgroundMusic = audio.loadStream( "BEEP.mp3" )
+ 
+-- Play the background music on channel 1, loop infinitely, and fade in over 5 seconds 
+local backgroundMusicChannel = audio.play( backgroundMusic, { channel=1, loops=-1, fadein=5000 } )
